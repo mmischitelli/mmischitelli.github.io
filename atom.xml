@@ -4,7 +4,7 @@
     <title> - Articles</title>
     <description>A blog about myself</description>
     <link>
-    https://mmischitelli.github.io</link>
+    </link>
     
       
       <item>
@@ -16,8 +16,8 @@
         
         <pubDate>Mon, 08 Jul 2019 12:00:00 +0200</pubDate>
         <link>
-        https://mmischitelli.github.io/welcome</link>
-        <guid isPermaLink="true">https://mmischitelli.github.io/welcome</guid>
+        /welcome</link>
+        <guid isPermaLink="true">/welcome</guid>
       </item>
       
     
