@@ -11,7 +11,7 @@
 
 
 
-    <title>Baked ambient occlusion</title>
+    <title>Subsurface scattering using TSM</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,25 +36,25 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="A blog about myself" />
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/portfolio/2008-11-10-baked-ambient-occlusion" />
+    <link rel="canonical" href="/portfolio/2009-01-28-translucent-shadow-maps" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="Michele Mischitelli's blog" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Baked ambient occlusion" />
-    <meta property="og:description" content="During my trainee at the CNR of Pisa, I had the chance of working on various techniques for improving the visual perception of 3D meshes: ambient occlusion was one of those. In particular, I was tasked with the job of writing an algorithm for pre-computing ambient occlusion values for any" />
-    <meta property="og:url" content="/portfolio/2008-11-10-baked-ambient-occlusion" />
-    <meta property="og:image" content="/assets/images/portfolio/ambient-occlusion.jpg" />
+    <meta property="og:title" content="Subsurface scattering using TSM" />
+    <meta property="og:description" content="The third and last technique explored during my trainee at the CNR of Pisa involved implementing a real-time algorithm for simulating the so-called subsurface scattering. When photons hit the surface of a solid, they can either bounce back or go through the various layers of which the material is composed." />
+    <meta property="og:url" content="/portfolio/2009-01-28-translucent-shadow-maps" />
+    <meta property="og:image" content="/assets/images/portfolio/subsurface-scattering.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2008-11-10T11:00:00+01:00" />
-    <meta property="article:modified_time" content="2008-11-10T11:00:00+01:00" />
+    <meta property="article:published_time" content="2009-01-28T11:00:00+01:00" />
+    <meta property="article:modified_time" content="2009-01-28T11:00:00+01:00" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Baked ambient occlusion" />
-    <meta name="twitter:description" content="During my trainee at the CNR of Pisa, I had the chance of working on various techniques for improving the visual perception of 3D meshes: ambient occlusion was one of those. In particular, I was tasked with the job of writing an algorithm for pre-computing ambient occlusion values for any" />
+    <meta name="twitter:title" content="Subsurface scattering using TSM" />
+    <meta name="twitter:description" content="The third and last technique explored during my trainee at the CNR of Pisa involved implementing a real-time algorithm for simulating the so-called subsurface scattering. When photons hit the surface of a solid, they can either bounce back or go through the various layers of which the material is composed." />
     <meta name="twitter:url" content="/" />
-    <meta name="twitter:image" content="/assets/images/portfolio/ambient-occlusion.jpg" />
+    <meta name="twitter:image" content="/assets/images/portfolio/subsurface-scattering.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Michele Mischitelli's blog" />
     <meta name="twitter:site" content="@michelemischit1" />
@@ -71,23 +71,23 @@
         "name": "Michele Mischitelli's blog",
         "logo": "/assets/images/blog-logo.png"
     },
-    "url": "/portfolio/2008-11-10-baked-ambient-occlusion",
+    "url": "/portfolio/2009-01-28-translucent-shadow-maps",
     "image": {
         "@type": "ImageObject",
-        "url": "/assets/images/portfolio/ambient-occlusion.jpg",
+        "url": "/assets/images/portfolio/subsurface-scattering.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/portfolio/2008-11-10-baked-ambient-occlusion"
+        "@id": "/portfolio/2009-01-28-translucent-shadow-maps"
     },
-    "description": "During my trainee at the CNR of Pisa, I had the chance of working on various techniques for improving the visual perception of 3D meshes: ambient occlusion was one of those. In particular, I was tasked with the job of writing an algorithm for pre-computing ambient occlusion values for any"
+    "description": "The third and last technique explored during my trainee at the CNR of Pisa involved implementing a real-time algorithm for simulating the so-called subsurface scattering. When photons hit the surface of a solid, they can either bounce back or go through the various layers of which the material is composed."
 }
     </script>
 
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="Baked ambient occlusion" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Subsurface scattering using TSM" href="/feed.xml" />
 
 
 </head>
@@ -143,28 +143,36 @@ into the {body} of the default.hbs template -->
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="10 November 2008">10 November 2008</time>
+                    <time class="post-full-meta-date" datetime="28 January 2009">28 January 2009</time>
                     
                 </section>
-                <h1 class="post-full-title">Baked ambient occlusion</h1>
+                <h1 class="post-full-title">Subsurface scattering using TSM</h1>
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/portfolio/ambient-occlusion.jpg)">
+            <figure class="post-full-image" style="background-image: url(/assets/images/portfolio/subsurface-scattering.jpg)">
             </figure>
             
 
             <section class="post-full-content">
                 <div class="kg-card-markdown">
-                    <p>During my trainee at the CNR of Pisa, I had the chance of working on various techniques for improving the visual perception of 3D meshes: ambient occlusion was one of those.</p>
+                    <p>The third and last technique explored during my trainee at the CNR of Pisa involved implementing a real-time algorithm for simulating the so-called subsurface scattering.</p>
 
-<p>In particular, I was tasked with the job of writing an algorithm for pre-computing ambient occlusion values for any given mesh and store it in a texture for later use. This algorithm had to be put in a QT/OpenGL plugin for the open-source software <a href="http://meshlab.sourceforge.net/">MeshLab</a>. Using the classical definition of Ambient Occlusion (which is often related to <em>accessibility shading</em>), each fragment is more or less visible to others according to how much of it is covered or shown by the surrounding geometry.</p>
+<p>When photons hit the surface of a solid, they can either bounce back or go through the various layers of which the material is composed. During this journey through the material, photons constantly interact and bounce (scatter) in pseudo-random directions, eventually coming out of it from a different angle and direction.</p>
 
-<p>According to a research conducted in 2000 by <a href="http://dx.doi.org/10.1068/p3060">H.H. Buelthoff and M.S. Langer</a>, humans use a more accurate model than dark-means-deep to perceive shape-from-shading under diffuse lighting, and ambient occlusion is a component of this model.</p>
+<p><img src="/assets/images/portfolio/tsm_scattering.png" alt="scattering-in-materials" width="300px" /></p>
 
-<p>By integrating on the hemisphere surrounding a given point, it’s possible to determine the visibility for that fragment. This approach is quite heavy on the hardware, but it’s one of the most accurate ways for calculating ambient occlusion. While a CPU-only approach required even minutes to compute, using the GPU to elaborate evertything (by writing and accumulating data on a single texture) reduced total time by one order of magnitude. By using multiple render targets is possible to work with very complex geometry, up to hundreds of milions of polygons.</p>
+<p>Physically simulating this requires perfect knowledge of the material’s composition, as well as tons of resources. For this reason, real-time simulation of this phenomenon requires approximation: one such technique was presented by C. Dachsbacher and M. Stamminger in 2003 and is named <a href="https://dl.acm.org/citation.cfm?id=882404.882433">Translucent Shadow Maps</a>.</p>
 
-<p><img src="/assets/images/portfolio/540k-poly-hw-acc.jpg" alt="540k-polys-under-6-seconds" class="img-responsive" /></p>
+<p><img src="/assets/images/portfolio/tsm_xin_xout.png" alt="tsm-in-a-nutshell" width="500px" /></p>
+
+<p>As the name suggests, this technique is similar to the traditional shadow mapping, extending it. Translucent Shadow Maps contain depth and incident light information. Sub-surface scattering is computed on-the-fly during rendering by filtering the shadow map neighbourhood. This filtering is done efficiently using a hierarchical approach, as shown in the following image:</p>
+
+<p><img src="/assets/images/portfolio/tsm_filter.png" alt="tsm-filtering-samples" width="200px" /></p>
+
+<p>This algorithm is usually combined with lambertian and specular reflectance functions to form a rough approximation of the BSSRDF. In the sample image below you can compare the same image with and without the scattering contribution:</p>
+
+<p><img src="/assets/images/portfolio/tsm_comparison.jpg" alt="tsm-filtering-samples" /></p>
 
                 </div>
             </section>
@@ -214,6 +222,9 @@ into the {body} of the default.hbs template -->
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
             
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
                 
 
     <article class="post-card post-template">
@@ -258,9 +269,6 @@ into the {body} of the default.hbs template -->
 
             
 
-            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
-            
-
         </div>
     </div>
 </aside>
@@ -276,18 +284,18 @@ into the {body} of the default.hbs template -->
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">Baked ambient occlusion</div>
+    <div class="floating-header-title">Subsurface scattering using TSM</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Baked+ambient+occlusion&amp;url=https://mmischitelli.github.ioportfolio/2008-11-10-baked-ambient-occlusion"
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Subsurface+scattering+using+TSM&amp;url=https://mmischitelli.github.ioportfolio/2009-01-28-translucent-shadow-maps"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
 
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://mmischitelli.github.ioportfolio/2008-11-10-baked-ambient-occlusion"
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://mmischitelli.github.ioportfolio/2009-01-28-translucent-shadow-maps"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
 
