@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Templated class properties</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="A blog about myself" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/templated-properties" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Michele Mischitelli's blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Templated class properties" />
+    <meta property="og:description" content="When you usually declare a C++ class, you’d hide its data members declaring them as private. Then you’d also create getters and setter for those members, thus promoting encapsulation. Regardless of where the storage of these properties actually resides, we’d still like to refer them as something that characterizes our" />
+    <meta property="og:url" content="/templated-properties" />
+    <meta property="og:image" content="/assets/images/posts/templated-properties.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2019-07-17T12:00:00+02:00" />
+    <meta property="article:modified_time" content="2019-07-17T12:00:00+02:00" />
+    <meta property="article:tag" content="Cpp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Templated class properties" />
+    <meta name="twitter:description" content="When you usually declare a C++ class, you’d hide its data members declaring them as private. Then you’d also create getters and setter for those members, thus promoting encapsulation. Regardless of where the storage of these properties actually resides, we’d still like to refer them as something that characterizes our" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/posts/templated-properties.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Michele Mischitelli's blog" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Cpp" />
+    <meta name="twitter:site" content="@michelemischit1" />
+    <meta name="twitter:creator" content="@michelemischit1" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Michele Mischitelli's blog",
+        "logo": "/assets/images/blog-logo.png"
+    },
+    "url": "/templated-properties",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/posts/templated-properties.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/templated-properties"
+    },
+    "description": "When you usually declare a C++ class, you’d hide its data members declaring them as private. Then you’d also create getters and setter for those members, thus promoting encapsulation. Regardless of where the storage of these properties actually resides, we’d still like to refer them as something that characterizes our"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Templated class properties" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-logo.png" alt="Michele Mischitelli's blog" /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="/portfolio/">Portfolio</a></li>
+    <li class="nav-thesis" role="menuitem"><a href="/thesis/">Thesis</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/michelemischit1" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-cpp ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="17 July 2019">17 July 2019</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/cpp/'>CPP</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Templated class properties</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/images/posts/templated-properties.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>When you usually declare a C++ class, you’d hide its data members declaring them as private. Then you’d also create getters and setter for those members, thus promoting encapsulation. Regardless of where the storage of these properties actually resides, we’d still like to refer them as something that characterizes our class. Something that can be updated, read or even <em>reverted</em> to the previous value if something goes wrong or the user presses CTRL+Z.</p>
+
+<p>Using the <strong>Command pattern</strong> we should be able to achieve our goal, producing thousands of lines of code sharing a similar structure as a byproduct. I’ll first illustrate the pattern, then show how much code that pattern tends to produce. And finally, will propose my solution, based upon variadic templates and preprocessor macros, that will cut down the total amount of lines of code for each property from <em>hundreds</em> to just <em>tens</em>.</p>
+
+<h2 id="command-pattern">Command Pattern</h2>
+<p>Most well-designed software and even games often use this pattern. It’s basically a way for converting a method call into an object which can be parametrized, put in a queue, logged and makes it easy to implement undoable operations. It’s an <em>an object-oriented replacement for callbacks</em> (cit. Gang of Four).</p>
+
+<p>The implementation we’ll base our discussion on in the following chapters relies on two classes: the <strong>CommandManager</strong> and the <strong>CommandInterface</strong>. The CommandManager is used to <em>execute</em>, <em>undo</em> or <em>redo</em> operations wrapped inside objects that implement the CommandInterface.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyCommandManager</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ICommand</span>
+<span class="p">{</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">MyCommandManager</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">ICommand</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Execute</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Undo</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Redo</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">MyCommandManager</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>    
+    <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;&gt;</span> <span class="n">m_UndoList</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;&gt;</span> <span class="n">m_RedoList</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">Execute</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span> <span class="n">command</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">Undo</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="n">Redo</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Now let’s show a concrete example of how commands interact with our objects, how they are created and executed. Imagine we had a <code class="highlighter-rouge">MyTable</code> class with two properties:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyTable</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">m_SizeX</span><span class="p">,</span> <span class="n">m_SizeY</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">SetSizeX</span><span class="p">(</span><span class="kt">float</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_SizeX</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">float</span> <span class="n">GetSizeX</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_SizeX</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">SetSizeY</span><span class="p">(</span><span class="kt">float</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_SizeY</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">float</span> <span class="n">GetSizeY</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_SizeY</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>We’d like to bind those properties to some kind of UI so that the user might be able to modify them directly and undo if they input a wrong number. It all starts with the definition of a command:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">namespace</span> <span class="n">TableCommands</span> 
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">SetSizeX</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ICommand</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MyTable</span><span class="o">&gt;</span> <span class="n">m_TablePtr</span><span class="p">;</span>
+        <span class="kt">float</span> <span class="n">m_NewValue</span><span class="p">,</span> <span class="n">m_OldValue</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">SetSizeX</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MyTable</span><span class="o">&gt;</span> <span class="n">table</span><span class="p">,</span> <span class="kt">float</span> <span class="n">newValue</span><span class="p">)</span>
+            <span class="o">:</span> <span class="n">m_TablePtr</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+            <span class="p">,</span> <span class="n">m_NewValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">)</span>
+            <span class="p">,</span> <span class="n">m_OldValue</span><span class="p">(</span><span class="mf">.0</span><span class="n">f</span><span class="p">)</span>
+        <span class="p">{</span> <span class="p">}</span>
+        <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span> <span class="n">Create</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">MyTable</span><span class="o">&gt;</span> <span class="n">table</span><span class="p">,</span> <span class="kt">float</span> <span class="n">newValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">static_pointer_cast</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">SetSizeX</span><span class="o">&gt;</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">newValue</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">Execute</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+            <span class="n">m_OldValue</span> <span class="o">=</span> <span class="n">m_TablePtr</span><span class="o">-&gt;</span><span class="n">GetSizeX</span><span class="p">();</span>
+            <span class="n">m_TablePtr</span><span class="o">-&gt;</span><span class="n">SetSizeX</span><span class="p">(</span><span class="n">m_NewValue</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">Undo</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+            <span class="n">m_TablePtr</span><span class="o">-&gt;</span><span class="n">SetSizeX</span><span class="p">(</span><span class="n">m_OldValue</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">Redo</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+            <span class="n">m_TablePtr</span><span class="o">-&gt;</span><span class="n">SetSizeX</span><span class="p">(</span><span class="n">m_NewValue</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The above command was put in its own namespace to avoid naming conflicts. Its <code class="highlighter-rouge">Execute</code>, <code class="highlighter-rouge">Undo</code> and <code class="highlighter-rouge">Redo</code> methods are private and can only be executed by the CommandManager since it was declared as <em>friend</em>. We also see an handy static <code class="highlighter-rouge">Create</code> method that instantiates the command and returns it, wrapped in a generic <code class="highlighter-rouge">ICommand</code> shared pointer.</p>
+
+<p>What the class really does is self-explanatory: when executed, it stores the old value and sets the new one. Undo and Redo methods just swap the old and the new values accordingly.</p>
+
+<p>Executing this command is straightforward:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">commandManagerPtr</span><span class="o">-&gt;</span><span class="n">Execute</span><span class="p">(</span><span class="n">TableCommands</span><span class="o">::</span><span class="n">SetSizeX</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">tablePtr</span><span class="p">,</span> <span class="mf">20.0</span><span class="n">f</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>However, we’ve just created one command for setting the X size. Doing the same for the Y size, as you can easily imagine at this point, would require us to <strong>duplicate</strong> those 27 lines of code and refactor every <em>SetSizeX</em> occurrence with <em>SetSizeY</em>: another 27 lines of code just to change 1 letter!</p>
+
+<h2 id="proposed-solution">Proposed solution</h2>
+<p>In order to be able to create commands <em>automatically</em> we first need a generic and standard way for defining what a property is and introduce a simple way for accessing them.</p>
+
+<h3 id="generic-properties">Generic properties</h3>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="kt">void</span><span class="o">*</span> <span class="n">PropertyID</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">OwnerType</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">TProperty</span>
+<span class="p">{</span>
+	<span class="k">virtual</span> <span class="o">~</span><span class="n">TProperty</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+	<span class="n">OwnerType</span><span class="o">*</span> <span class="n">Owner</span><span class="p">;</span>
+	<span class="kt">bool</span> <span class="n">IsA</span><span class="p">(</span><span class="n">PropertyID</span> <span class="n">otherType</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_GetPropertyID</span><span class="p">()</span> <span class="o">==</span> <span class="n">otherType</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">PropertyID</span> <span class="n">GetPropertyID</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_GetPropertyID</span><span class="p">();</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="k">virtual</span> <span class="n">PropertyID</span> <span class="n">_GetPropertyID</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">OwnerType</span><span class="p">,</span> <span class="k">typename</span> <span class="n">PropertyType</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">AdditionalTypes</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">TSimpleProperty</span> <span class="o">:</span> <span class="n">TProperty</span><span class="o">&lt;</span><span class="n">OwnerType</span><span class="o">&gt;</span>
+<span class="p">{</span>
+	<span class="kt">void</span> <span class="n">Set</span><span class="p">(</span><span class="n">PropertyType</span> <span class="n">value</span><span class="p">,</span> <span class="n">AdditionalTypes</span><span class="p">...</span> <span class="n">moreValues</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="n">_Set</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">moreValues</span><span class="p">...);</span> 
+    <span class="p">}</span>
+	<span class="n">PropertyType</span> <span class="n">Get</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_Get</span><span class="p">();</span> <span class="p">}</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span> <span class="n">Command</span><span class="p">(</span><span class="n">PropertyType</span> <span class="n">value</span><span class="p">,</span> <span class="n">AdditionalTypes</span><span class="p">...</span> <span class="n">moreValues</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_Command</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">moreValues</span><span class="p">...);</span> 
+    <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+	<span class="k">virtual</span> <span class="kt">void</span> <span class="n">_Set</span><span class="p">(</span><span class="n">PropertyType</span> <span class="n">value</span><span class="p">,</span> <span class="n">AdditionalTypes</span><span class="p">...</span> <span class="n">moreValues</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">virtual</span> <span class="n">PropertyType</span> <span class="n">_Get</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span> <span class="n">_Command</span><span class="p">(</span><span class="n">PropertyType</span> <span class="n">value</span><span class="p">,</span> <span class="n">AdditionalTypes</span><span class="p">...</span> <span class="n">moreValues</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">PropertyID</span> <span class="n">_GetPropertyID</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Both <code class="highlighter-rouge">TProperty</code> and <code class="highlighter-rouge">TSimpleProperty</code> are abstract structs and cannot be instantiated. They serve different purposes: <code class="highlighter-rouge">TProperty</code> is the most basic interface that is shared by any kind of property we’d like to have; <code class="highlighter-rouge">TSimpleProperty</code> is one of these different types (the simplest one).</p>
+
+<p>Please note that <code class="highlighter-rouge">TSimpleProperty</code> is still quite complex: it is a <em>variadic template</em> and is characterized by a variable amount of types. These additional types are used (and passed) to the Set and Command methods and are handy for developers wanting to execute some additional logic during a Set, based on the provided parameters. In my opinion it’s better to keep setters as simple as possible and instead move whatever additional logic in a separate method. However, in the real world, if a developer sees that some logic needs always to be executed after setting some particular property, he’d certainly embed it in the setter.</p>
+
+<p>At this point we can then proceed to create the <strong>SizeX</strong> property in our <code class="highlighter-rouge">MyTable</code> class:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyTable</span>
+<span class="p">{</span>
+<span class="cp">#pragma region SizeX property
+</span><span class="k">public</span><span class="o">:</span>
+    <span class="k">friend</span> <span class="k">struct</span> <span class="n">TSizeXProperty</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">TSizeXProperty</span> <span class="o">:</span> <span class="n">TSimpleProperty</span><span class="o">&lt;</span><span class="n">MyTable</span><span class="p">,</span><span class="kt">float</span><span class="o">&gt;</span> <span class="p">{</span> 
+    <span class="k">public</span><span class="o">:</span> 
+        <span class="k">static</span> <span class="n">PropertyID</span> <span class="n">GetStaticPropertyID</span><span class="p">()</span> <span class="p">{</span> 
+            <span class="k">return</span> <span class="n">PropertyID</span><span class="p">(</span><span class="o">&amp;</span><span class="n">TSizeXProperty</span><span class="o">::</span><span class="n">s_PropID</span><span class="p">);</span> 
+        <span class="p">}</span> 
+    <span class="k">private</span><span class="o">:</span>
+        <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">s_PropID</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">PropertyID</span> <span class="n">_GetPropertyID</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> 
+            <span class="k">return</span> <span class="n">GetStaticPropertyID</span><span class="p">();</span> 
+        <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">_Set</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+        <span class="kt">float</span> <span class="n">_Get</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span> <span class="n">_Command</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+    <span class="p">};</span> 
+    <span class="kt">void</span> <span class="nf">SetSizeX</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_SizeXProperty</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="p">}</span> 
+    <span class="kt">float</span> <span class="n">GetSizeX</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_SizeXProperty</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span> <span class="p">}</span> 
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">TSizeXProperty</span> <span class="n">m_SizeXProperty</span><span class="p">;</span>
+<span class="cp">#pragma endregion
+</span>
+    <span class="kt">void</span> <span class="n">Init</span><span class="p">(){</span>
+        <span class="n">m_SizeXProperty</span><span class="p">.</span><span class="n">Owner</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="n">MyTable</span><span class="o">::</span><span class="n">TSizeXProperty</span><span class="o">::</span><span class="n">_Set</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">Owner</span><span class="o">-&gt;</span><span class="p">...</span> <span class="p">}</span>
+<span class="kt">float</span> <span class="n">MyTable</span><span class="o">::</span><span class="n">TSizeXProperty</span><span class="o">::</span><span class="n">_Get</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Owner</span><span class="o">-&gt;</span><span class="p">...</span> <span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ICommand</span><span class="o">&gt;</span> <span class="n">MyTable</span><span class="o">::</span><span class="n">TSizeXProperty</span><span class="o">::</span><span class="n">_Command</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the above code, we first declare that our <code class="highlighter-rouge">TSizeXProperty</code> struct is a friend of <code class="highlighter-rouge">MyTable</code>: this will allow the code executed in the private _Set and _Get method to have full access to private methods in the Table class.</p>
+
+<p><code class="highlighter-rouge">TSizeXProperty</code> derives from <code class="highlighter-rouge">TSimpleProperty</code> and as such must override the pure virtual methods <code class="highlighter-rouge">_Get</code>, <code class="highlighter-rouge">_Set</code>, <code class="highlighter-rouge">_Command</code> and <code class="highlighter-rouge">_GetPropertyId</code>. The first three are quite obvious at this point while the last one is a trick we’ll use next to perform some kind of <em>type checking</em> at runtime without resorting to RTTI: we’re returning the <em>pointer</em> to the static <code class="highlighter-rouge">s_PropID</code> and comparing it against other properties. All instances of the same property class will thus share the same memory location for that private variable, resulting in some form of type checking that’s useful to our goal.</p>
+
+<p>After the declaration of the property’s struct, we also declared and defined Setters and Getters for that property directly in the <code class="highlighter-rouge">MyTable</code> class. Those methods are just proxies to the same methods defined in the property’s struct and allow interacting with it without knowing how that property was implemented.</p>
+
+<p>Lastly, we need to initialize our property by setting the owner pointer to the actual <code class="highlighter-rouge">MyTable</code>’s object.</p>
+
+<h3 id="generic-properties-with-macros">Generic properties with macros</h3>
+<p>All this variadic and nested structs is nice and all but we still need to write a lot of code (and we haven’t even created our commands yet!). Right now, however, we have all we need to transform the above Property struct code into just one single line of code:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyTable</span>
+<span class="p">{</span>
+    <span class="n">DECLARE_PROPERTY</span><span class="p">(</span><span class="n">MyTable</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="n">SizeX</span><span class="p">)</span>
+    <span class="n">DECLARE_PROPERTY</span><span class="p">(</span><span class="n">MyTable</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="n">SizeY</span><span class="p">)</span>
+
+    <span class="kt">void</span> <span class="n">Init</span><span class="p">(){</span>
+        <span class="n">m_SizeXProperty</span><span class="p">.</span><span class="n">Owner</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="n">m_SizeYProperty</span><span class="p">.</span><span class="n">Owner</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>What we’ve done here is putting all the code enclosed in the <code class="highlighter-rouge">#pragma region</code> in a preprocessor macro, replacing types and names with the arguments. Since the underlying structs support a variable amount of parameters, we also needed to create some more macros:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DECLARE_PROPERTY</span><span class="p">(</span><span class="n">ClassType</span><span class="p">,</span> <span class="n">Type1</span><span class="p">,</span> <span class="n">Name1</span><span class="p">)</span> <span class="p">...</span>
+<span class="n">DECLARE_PROPERTY_2P</span><span class="p">(</span><span class="n">ClassType</span><span class="p">,</span> <span class="n">Type1</span><span class="p">,</span> <span class="n">Name1</span><span class="p">,</span> <span class="n">Type2</span><span class="p">,</span> <span class="n">Name2</span><span class="p">)</span> <span class="p">...</span>
+<span class="n">DECLARE_PROPERTY_3P</span><span class="p">(</span><span class="n">ClassType</span><span class="p">,</span> <span class="n">Type1</span><span class="p">,</span> <span class="n">Name1</span><span class="p">,</span> <span class="n">Type2</span><span class="p">,</span> <span class="n">Name2</span><span class="p">,</span> <span class="n">Type3</span><span class="p">,</span> <span class="n">Name3</span><span class="p">)</span> <span class="p">...</span>
+</code></pre></div></div>
+
+<h3 id="accessing-generic-properties-in-a-generic-way">Accessing generic properties in a generic way</h3>
+<p>Right now, even with the above macros, we have just introduced a quick way of creating properties: we still need to find a way to allow developers to access these properties by just indicating their <em>type</em>. That would completely change how we can interact with our class and pave the way for <em>automatic commands</em>.</p>
+
+<p>Fortunately, most of work’s been already done! Let’s now introduce the <code class="highlighter-rouge">IPropertyManager</code> interface:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">IPropertyManager</span>
+<span class="p">{</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">PropertyID</span><span class="p">,</span> <span class="kt">void</span><span class="o">*&gt;</span> <span class="n">MapType</span><span class="p">;</span>
+    <span class="n">MapType</span> <span class="n">m_Properties</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">PropertyType</span><span class="o">&gt;</span>
+    <span class="n">PropertyType</span><span class="o">*</span> <span class="n">GetProperty</span><span class="p">()</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">prop</span> <span class="o">=</span> <span class="n">m_Properties</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">PropertyType</span><span class="o">::</span><span class="n">GetStaticPropertyID</span><span class="p">());</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">prop</span> <span class="o">!=</span> <span class="n">m_Properties</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">PropertyType</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">prop</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">nullptr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">protected</span><span class="o">:</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">ClassType</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">_InitProperty</span><span class="p">(</span><span class="n">TProperty</span><span class="o">&lt;</span><span class="n">ClassType</span><span class="o">&gt;&amp;</span> <span class="n">prop</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">prop</span><span class="p">.</span><span class="n">Owner</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ClassType</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">m_Properties</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">PropertyID</span><span class="p">,</span> <span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">prop</span><span class="p">.</span><span class="n">GetPropertyID</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">prop</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>We can thus modify the <code class="highlighter-rouge">MyTable</code> class as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyTable</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IPropertyManager</span>
+<span class="p">{</span>
+    <span class="n">DECLARE_PROPERTY</span><span class="p">(</span><span class="n">MyTable</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="n">SizeX</span><span class="p">)</span>
+    <span class="n">DECLARE_PROPERTY</span><span class="p">(</span><span class="n">MyTable</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="n">SizeY</span><span class="p">)</span>
+
+    <span class="kt">void</span> <span class="n">Init</span><span class="p">(){</span>
+        <span class="n">_InitProperty</span><span class="p">(</span><span class="n">m_SizeXProperty</span><span class="p">);</span>
+        <span class="n">_InitProperty</span><span class="p">(</span><span class="n">m_SizeYProperty</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>And we’re able to interact with properties like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tablePtr</span><span class="o">-&gt;</span><span class="n">GetProperty</span><span class="o">&lt;</span><span class="n">MyTable</span><span class="o">::</span><span class="n">TSizeXProperty</span><span class="o">&gt;</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">(</span><span class="mf">3.0</span><span class="n">f</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="n">kSizeY</span> <span class="o">=</span> <span class="n">tablePtr</span><span class="o">-&gt;</span><span class="n">GetProperty</span><span class="o">&lt;</span><span class="n">MyTable</span><span class="o">::</span><span class="n">TSizeXProperty</span><span class="o">&gt;</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post we’ve seen how much boilerplate code we could end up writing when using the Command pattern. I’ve then introduced some classes and macros that can help declaring properties in a standardized and concise way, while also enabling us to query classes for some specific property.</p>
+
+<p>As we will see in the next blog post, this is prerequisite that will allow us to create commands in <strong>just one line of code</strong>, greatly reducing the amount of code needed for each one in our software.</p>
+
+<hr />
+
+<p><strong>Disclosure:</strong> this post originally appearead on <a href="https://blog.zuru.tech/cpp-development/2019/06/04/templated-properties">Zuru Tech Blog</a> and was later cross-posted here.</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/mmischitelli.png" alt="mmischitelli" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/mmischitelli">Michele Mischitelli</a></h4>
+                                
+                                    <p>C++ & Unreal Engine 4 developer</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/mmischitelli">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/welcome">
+                <div class="post-card-image" style="background-image: url(/assets/images/welcome.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/welcome">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Random</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Welcome to my personal blog</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/mmischitelli.png" alt="Michele Mischitelli" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/mmischitelli/">Michele Mischitelli</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="Michele Mischitelli's blog icon" />
+            
+            <span>Michele Mischitelli's blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Templated class properties</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Templated+class+properties&amp;url=https://mmischitelli.github.iotemplated-properties"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://mmischitelli.github.iotemplated-properties"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">Michele Mischitelli's blog</a> &copy; 2019</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    
+                    <a href="https://twitter.com/michelemischit1" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51694480-3', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>
