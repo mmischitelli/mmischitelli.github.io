@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/tag/cpp/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2019-07-17T23:33:26+02:00</updated>
+  <updated>2019-07-17T23:44:00+02:00</updated>
   <id>/tag/cpp/feed.xml</id>
 
   
@@ -33,11 +33,11 @@
   
     <entry>
       <title type="html">Templated class properties</title>
-      <link href="/templated-properties" rel="alternate" type="text/html" title="Templated class properties" />
+      <link href="/2019/07/17/templated-properties/" rel="alternate" type="text/html" title="Templated class properties" />
       <published>2019-07-17T12:00:00+02:00</published>
       <updated>2019-07-17T12:00:00+02:00</updated>
-      <id>/templated-properties</id>
-      <content type="html" xml:base="/templated-properties">&lt;p&gt;When you usually declare a C++ class, you’d hide its data members declaring them as private. Then you’d also create getters and setter for those members, thus promoting encapsulation. Regardless of where the storage of these properties actually resides, we’d still like to refer them as something that characterizes our class. Something that can be updated, read or even &lt;em&gt;reverted&lt;/em&gt; to the previous value if something goes wrong or the user presses CTRL+Z.&lt;/p&gt;
+      <id>/2019/07/17/templated-properties</id>
+      <content type="html" xml:base="/2019/07/17/templated-properties/">&lt;p&gt;When you usually declare a C++ class, you’d hide its data members declaring them as private. Then you’d also create getters and setter for those members, thus promoting encapsulation. Regardless of where the storage of these properties actually resides, we’d still like to refer them as something that characterizes our class. Something that can be updated, read or even &lt;em&gt;reverted&lt;/em&gt; to the previous value if something goes wrong or the user presses CTRL+Z.&lt;/p&gt;
 
 &lt;p&gt;Using the &lt;strong&gt;Command pattern&lt;/strong&gt; we should be able to achieve our goal, producing thousands of lines of code sharing a similar structure as a byproduct. I’ll first illustrate the pattern, then show how much code that pattern tends to produce. And finally, will propose my solution, based upon variadic templates and preprocessor macros, that will cut down the total amount of lines of code for each property from &lt;em&gt;hundreds&lt;/em&gt; to just &lt;em&gt;tens&lt;/em&gt;.&lt;/p&gt;
 
