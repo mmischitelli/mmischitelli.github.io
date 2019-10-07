@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Simple C++ Container</title>
+        
+          <description>&lt;p&gt;When I used to develop C# UWP application, MVVM was the architectural pattern of choice of many developers and maybe it still is.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 06 Oct 2019 12:00:00 +0200</pubDate>
+        <link>
+        /2019/10/06/simple-container/</link>
+        <guid isPermaLink="true">/2019/10/06/simple-container/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Automatic commands</title>
         
           <description>&lt;p&gt;In the &lt;a href=&quot;/2019/07/17/templated-properties/&quot;&gt;previous post&lt;/a&gt;, we’ve seen how to use variadic templates to declare generic &lt;em&gt;class properties&lt;/em&gt;.&lt;/p&gt;
