@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/tag/cpp/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2019-10-08T00:10:14+02:00</updated>
+  <updated>2019-11-10T20:07:45+01:00</updated>
   <id>/tag/cpp/feed.xml</id>
 
   
@@ -30,6 +30,108 @@
   
   
 
+  
+    <entry>
+      <title type="html">UE4 - delegates, async and subsystems</title>
+      <link href="/2019/11/07/delegates-async-subsystems/" rel="alternate" type="text/html" title="UE4 - delegates, async and subsystems" />
+      <published>2019-11-07T21:00:00+01:00</published>
+      <updated>2019-11-07T21:00:00+01:00</updated>
+      <id>/2019/11/07/delegates-async-subsystems</id>
+      <content type="html" xml:base="/2019/11/07/delegates-async-subsystems/">&lt;p&gt;Talk held on the 7th of November 2019 at MakeIt Modena for the &lt;a href=&quot;https://www.italiancpp.org/&quot;&gt;Italian C++ Community&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As with most game engines and game architectures, Unreal developers often rely on events and delegates to wire up different systems and make them easily interact with each others. In UE4 there are many (I count up to 6!) different types of delegates and many more so ways of binding to them: for this reason I deemed useful highlighting their main characteristics and use cases, along with some code showing how they are declared and used.&lt;/p&gt;
+
+&lt;p&gt;Then I moved on talking about the asynchronous execution primitives and higher level constructs that the framework provides the developer with. We saw how to create threads, how to declare ad use a mutex and even how to spawn external processes, monitor and communicate with them, all through the various mechanics that have been implemented by Epic in the engine.&lt;/p&gt;
+
+&lt;p&gt;The last portion of the meetup was dedicated to Subsystems, an architectural pattern recently introduced in UE4. They are defined as automatically instantiated classes that have a well defined lifetime. During the meetup we see what they actually are, what they are not and how you can declare them.&lt;/p&gt;
+
+&lt;h3 id=&quot;resources&quot;&gt;Resources&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Repository: &lt;a href=&quot;https://github.com/mmischitelli/MeetupNov19&quot;&gt;Example code on GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Slides: Delegates, Async and Subsystems &lt;a href=&quot;/assets/downloads/talks-delegates-async-subsystems.pdf&quot;&gt;[.pdf (1.2MB)]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Video: Live event recording &lt;a href=&quot;https://www.youtube.com/watch?v=mB6afDMzTjQ&quot;&gt;YouTube (ITA)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Michele Mischitelli</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="ue4" />
+      
+        <category term="cpp" />
+      
+        <category term="talks" />
+      
+
+      
+        <summary type="html">Talk held on the 7th of November 2019 at MakeIt Modena for the Italian C++ Community.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Introduction to Unreal Engine 4</title>
+      <link href="/2019/10/10/introduction-to-ue4/" rel="alternate" type="text/html" title="Introduction to Unreal Engine 4" />
+      <published>2019-10-10T22:00:00+02:00</published>
+      <updated>2019-10-10T22:00:00+02:00</updated>
+      <id>/2019/10/10/introduction-to-ue4</id>
+      <content type="html" xml:base="/2019/10/10/introduction-to-ue4/">&lt;p&gt;Talk held on the 10th of October 2019 at MakeIt Modena for the &lt;a href=&quot;https://www.italiancpp.org/&quot;&gt;Italian C++ Community&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Begin an introduction, I took the chance to shed some light on game engines in general, describing their overall architecture and how some mandatory requirements made them evolve in complex frameworks.&lt;/p&gt;
+
+&lt;p&gt;At this point, I could start diving into Unreal Engine 4, highlighting some key benefits and interesting aspects of this engine, especially if you are a C++ developer. As with every decent introduction in the world of programming, I could not avoid showing an &lt;code class=&quot;highlighter-rouge&quot;&gt;Hello, World&lt;/code&gt; project. We then moved on making this example a little bit more &lt;em&gt;Unreal-esque&lt;/em&gt;, turning the text into a dynamic string that can be edited in various ways.&lt;/p&gt;
+
+&lt;p&gt;During the last half an hour, we had a glimpse at &lt;code class=&quot;highlighter-rouge&quot;&gt;UObject&lt;/code&gt;s, &lt;code class=&quot;highlighter-rouge&quot;&gt;AActor&lt;/code&gt;s, components and saw how they relate to each other and how they interact with the UE4’s garbage collector. We also saw the mostly used containers and data structures that Epic implemented, along with some useful information and suggestions to make the most out of them.&lt;/p&gt;
+
+&lt;h3 id=&quot;resources&quot;&gt;Resources&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Repository: &lt;a href=&quot;https://github.com/mmischitelli/MeetupOct19&quot;&gt;Example code on GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Slides: Introduction to UE4 &lt;a href=&quot;/assets/downloads/talks-introduction-to-ue4.pdf&quot;&gt;[.pdf (1.6MB)]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Video: Live event recording &lt;a href=&quot;https://www.youtube.com/watch?v=CTHQO2J8jWg&quot;&gt;YouTube (ITA)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Michele Mischitelli</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="ue4" />
+      
+        <category term="cpp" />
+      
+        <category term="talks" />
+      
+
+      
+        <summary type="html">Talk held on the 10th of October 2019 at MakeIt Modena for the Italian C++ Community.</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">Simple C++ Container</title>

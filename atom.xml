@@ -8,6 +8,36 @@
     
       
       <item>
+        <title>UE4 - delegates, async and subsystems</title>
+        
+          <description>&lt;p&gt;Talk held on the 7th of November 2019 at MakeIt Modena for the &lt;a href=&quot;https://www.italiancpp.org/&quot;&gt;Italian C++ Community&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 07 Nov 2019 21:00:00 +0100</pubDate>
+        <link>
+        /2019/11/07/delegates-async-subsystems/</link>
+        <guid isPermaLink="true">/2019/11/07/delegates-async-subsystems/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Introduction to Unreal Engine 4</title>
+        
+          <description>&lt;p&gt;Talk held on the 10th of October 2019 at MakeIt Modena for the &lt;a href=&quot;https://www.italiancpp.org/&quot;&gt;Italian C++ Community&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 10 Oct 2019 22:00:00 +0200</pubDate>
+        <link>
+        /2019/10/10/introduction-to-ue4/</link>
+        <guid isPermaLink="true">/2019/10/10/introduction-to-ue4/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Simple C++ Container</title>
         
           <description>&lt;p&gt;When I used to develop C# UWP application, MVVM was the architectural pattern of choice of many developers and maybe it still is.&lt;/p&gt;
