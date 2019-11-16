@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Lifetime managers</title>
+        
+          <description>&lt;p&gt;Follow up post on a possible implementation of a &lt;a href=&quot;/2019/10/06/simple-container/&quot;&gt;simple c++ container&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 14 Nov 2019 11:00:00 +0100</pubDate>
+        <link>
+        /2019/11/14/lifetime-managers/</link>
+        <guid isPermaLink="true">/2019/11/14/lifetime-managers/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>UE4 - delegates, async and subsystems</title>
         
           <description>&lt;p&gt;Talk held on the 7th of November 2019 at MakeIt Modena for the &lt;a href=&quot;https://www.italiancpp.org/&quot;&gt;Italian C++ Community&lt;/a&gt;.&lt;/p&gt;
