@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/author/mmischitelli/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2019-11-16T12:58:27+01:00</updated>
+  <updated>2020-09-11T19:11:39+02:00</updated>
   <id>/author/mmischitelli/feed.xml</id>
 
   
@@ -30,6 +30,177 @@
   
   
 
+  
+    <entry>
+      <title type="html">Of docker containers and Arm mini-computers</title>
+      <link href="/2020/09/11/pihole-docker-torizon/" rel="alternate" type="text/html" title="Of docker containers and Arm mini-computers" />
+      <published>2020-09-11T12:00:00+02:00</published>
+      <updated>2020-09-11T12:00:00+02:00</updated>
+      <id>/2020/09/11/pihole-docker-torizon</id>
+      <content type="html" xml:base="/2020/09/11/pihole-docker-torizon/">&lt;p&gt;This article will be on a very different topic than the ones I’ve been talking about usually in this blog.&lt;/p&gt;
+
+&lt;p&gt;This time it’ll be about Docker containers running on a small, Raspberry PI kind of computer made by &lt;a href=&quot;https://developer.toradex.com/products/colibri-imx6&quot;&gt;Toradex&lt;/a&gt;. And we’ll be using the containerized version of Pi-Hole as an example, so you’ll also get some bonus info on networking on Docker on Linux.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-hardware-and-its-software&quot;&gt;The hardware (and it’s software)&lt;/h2&gt;
+&lt;p&gt;Before pulling any image or configuring any network, I think it’s worth talking a bit about the hardware I’ll be targeting because some things will have to consider it.&lt;/p&gt;
+
+&lt;p&gt;Almost a year ago, I attended the C++ Day in Parma (oh and by the way, do not miss the one we’ll have later this year, it’ll be an online event!). There, I took part in one of the mini-challenges that Marco Arena loves to pull off with the attendees and won a lovely Toradex Colibri iMX6: it’s a mini-computer composed of a System on a Module (SoM) and a carrier board. The SoM sports a dual-core Arm Cortex A9 running at 1GHz, with 512MB DDR3 Ram, 4GB of internal storage: everything’s soldered on a SODIMM-like PCB which plugs into the Aster carrier board that came with it. The carrier board provides the developer with lots of I/O to interact with the SoM.&lt;/p&gt;
+
+&lt;p&gt;By default, the Toradex’s solution ships with Torizon, a Yocto Project based OS that supports Docker right out of the box. Turn it on, wait a few seconds and you’ll be ready to connect to it through SSH&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh torizon@colibri-imx6-&amp;lt;yourid&amp;gt;
+
+colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;uname &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+Linux colibri-imx6-&amp;lt;yourid&amp;gt; 5.4.43-4.0.0-devel+git.ed141ad4be96 &lt;span class=&quot;c&quot;&gt;#1-TorizonCore SMP Wed Jul 1 16:19:28 UTC 2020 armv7l armv7l armv7l GNU/Linux&lt;/span&gt;
+
+colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker version
+Client:
+ Version:           19.03.12-ce
+ API version:       1.40
+ Go version:        go1.14
+ Git commit:        48a66213fe
+ Built:             Wed Jul  1 13:56:22 2020
+ OS/Arch:           linux/arm
+ Experimental:      &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;the-software&quot;&gt;The software&lt;/h2&gt;
+&lt;p&gt;As mentioned above, we’re going to use &lt;a href=&quot;https://pi-hole.net/&quot;&gt;Pi-Hole&lt;/a&gt; as an example container to run in this environment. But what exactly is Pi-Hole? As the creators state on the website, it’s a &lt;em&gt;Network-wide Ad Blocker&lt;/em&gt;: it blocks ads and malware at the network level, resulting in web pages to be loaded except for those parts that contain ads.&lt;/p&gt;
+
+&lt;p&gt;I don’t want to step into the fierce battle pro or versus online advertisements. This is just a tool you can (or don’t!) use on your local network, for which well done &lt;a href=&quot;https://github.com/anudeepND/whitelist&quot;&gt;whitelists&lt;/a&gt; exist to still allow web pages to generate revenue.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-procedure&quot;&gt;The procedure&lt;/h2&gt;
+&lt;p&gt;As the first thing, you’ll want to get the docker image: remember, this is still a low power computer and downloading (but most importantly extracting) will take a while:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker pull pihole/pihole
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While the above command is running, open a new SSH shell to the Toradex computer: we’re going to create the appropriate network connections for this to work!&lt;/p&gt;
+
+&lt;p&gt;First, let’s see what kind of connections are configured on this little box:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmcli
+
+...
+ethernet0: connected to network0
+        &lt;span class=&quot;s2&quot;&gt;&quot;ethernet0&quot;&lt;/span&gt;
+        ethernet &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 07:2B:B9:CA:22:0E, hw, mtu 1500
+        ip4 default
+        inet4 192.168.1.184/24
+        route4 192.168.1.0/24
+        route4 0.0.0.0/0
+        inet6 fe80::8e56:116b:eb49:3cf9/64
+        route6 fe80::/64
+        route6 ff00::/8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Of course you’ll see more networks, those created by default by Docker. But the important one is this one: it represents the network created over the physical interface &lt;em&gt;ethernet0&lt;/em&gt;. Since Pi-Hole requires its own address there are a couple of solutions:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;you let Docker create automatically a bridged network for this docker and just bind all the ports from the host network (the one bound to the physical network interface) down to Pi-Hole’s own little world&lt;/li&gt;
+  &lt;li&gt;you create a &lt;em&gt;virtual&lt;/em&gt; network interface linked to the physical one and use it to create a new network, with its own IP address, just for Pi-Hole&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I went with the second option as, by default, Torizon has the port 53 already bound by one of its out-of-the-box services. Of course you could clean up the environment, free up that port and follow the first route: it’s up to you to decide!&lt;/p&gt;
+
+&lt;p&gt;The first thing we’re going to do, is to assign a static IP address to the Toradex computer, just to make our life a little easier later on:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmcli con edit network0
+nmcli&amp;gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;ipv4.addresses 192.168.1.254/24
+Do you also want to &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ipv4.method'&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;'manual'&lt;/span&gt;? &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;yes]: yes
+nmcli&amp;gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;ipv4.gateway 192.168.1.1
+nmcli&amp;gt; save
+nmcli&amp;gt; quit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point, you should have been disconnected due to the IP change. Reconnect, and let’s create the new virtual network interface:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmcli con add &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;macvlan ifname macvlan0 autoconnect yes save yes dev ethernet0 mode bridge ip4 192.168.1.0/24
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above command tells NetworkManager to add a new connection of type &lt;a href=&quot;http://hicu.be/bridge-vs-macvlan&quot;&gt;macvlan&lt;/a&gt;, name it macvlan0, link it to the physical device ethernet0 in bridged mode. Also, we’re not specifying the IP address at this point. This is just the physical interface and we’re just specifying the subnetwork it’ll work on; the IP will be defined later on via docker-compose.&lt;/p&gt;
+
+&lt;p&gt;Now let’s check our current situation with &lt;code class=&quot;highlighter-rouge&quot;&gt;ifconfig&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ethernet0 Link encap:Ethernet  HWaddr 07:2b:b9:ca:22:0e
+          inet addr:192.168.1.254  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::8e56:11f3:e4b3:b18a/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:110971 errors:0 dropped:5 overruns:0 frame:0
+          TX packets:94561 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:21211721 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;20.2 MiB&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  TX bytes:22388391 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;21.3 MiB&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+macvlan0  Link encap:Ethernet  HWaddr ba:26:49:e8:fa:97
+          inet addr:192.168.1.0  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::49aa:ae92:8fa3:74ba/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:28506 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:5562 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:3918713 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.7 MiB&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  TX bytes:477197 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;466.0 KiB&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;All right, everything checks out. At this point, we only have to launch the Pi-Hole container, instructing docker to create an appropriate network which uses the newly created virtual interface.&lt;/p&gt;
+
+&lt;p&gt;To do so, we’re going to use docker-compose. Create a folder on your home directory, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;mkdir compose/pihole&lt;/code&gt; and then create a blank &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; file in it. Open it with your favorite text editing software and paste the pre-configured yml found in the &lt;a href=&quot;https://hub.docker.com/r/pihole/pihole&quot;&gt;Pi-Hole’s docker hub&lt;/a&gt;, then add the following:&lt;/p&gt;
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2&quot;&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;piholenet&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;macvlan&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;driver_opts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;macvlan0&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ipam&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;subnet&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.0/24&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;gateway&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.1&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;pihole&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;piholenet&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;ipv4_address&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;192.168.1.2&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The above will instruct Docker to create a network for our container, using the physical (actually virtual) interface &lt;em&gt;macvlan0&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Everything should be set-up and ready to go. Let’s try:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;colibri-imx6-&amp;lt;yourid&amp;gt;:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose up &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/pihole-result.png&quot; alt=&quot;pihole-result&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;As with a lot of projects like this one, many things can differ from one’s configuration to the other. This article’s goal was not to provide a step-by-step guide to have something so &lt;em&gt;personal&lt;/em&gt; as a DHCP and DNS server custom-tailored for your network. Instead, I wanted to document the main steps I had to take to end up having a working docker container, with its own bridged virtual network interface, running on a funny little Arm computer.&lt;/p&gt;
+
+&lt;p&gt;I hope you’ve enjoyed something a little different from the usual C++ stuff. Take care.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Michele Mischitelli</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="docker" />
+      
+        <category term="linux" />
+      
+
+      
+        <summary type="html">This article will be on a very different topic than the ones I’ve been talking about usually in this blog. This time it’ll be about Docker containers running on a small, Raspberry PI kind of computer made by Toradex. And we’ll be using the containerized version of Pi-Hole as an example, so you’ll also get some bonus info on networking on Docker on Linux. The hardware (and it’s software) Before pulling any image or configuring any network, I think it’s worth talking a bit about the hardware I’ll be targeting because some things will have to consider it. Almost a year ago, I attended the C++ Day in Parma (oh and by the way, do not miss the one we’ll have later this year, it’ll be an online event!). There, I took part in one of the mini-challenges that Marco Arena loves to pull off with the attendees and won a lovely Toradex Colibri iMX6: it’s a mini-computer composed of a System on a Module (SoM) and a carrier board. The SoM sports a dual-core Arm Cortex A9 running at 1GHz, with 512MB DDR3 Ram, 4GB of internal storage: everything’s soldered on a SODIMM-like PCB which plugs into the Aster carrier board that came with it. The carrier board provides the developer with lots of I/O to interact with the SoM. By default, the Toradex’s solution ships with Torizon, a Yocto Project based OS that supports Docker right out of the box. Turn it on, wait a few seconds and you’ll be ready to connect to it through SSH ssh torizon@colibri-imx6-&amp;lt;yourid&amp;gt; colibri-imx6-&amp;lt;yourid&amp;gt;:~$ uname -a Linux colibri-imx6-&amp;lt;yourid&amp;gt; 5.4.43-4.0.0-devel+git.ed141ad4be96 #1-TorizonCore SMP Wed Jul 1 16:19:28 UTC 2020 armv7l armv7l armv7l GNU/Linux colibri-imx6-&amp;lt;yourid&amp;gt;:~$ docker version Client: Version: 19.03.12-ce API version: 1.40 Go version: go1.14 Git commit: 48a66213fe Built: Wed Jul 1 13:56:22 2020 OS/Arch: linux/arm Experimental: false The software As mentioned above, we’re going to use Pi-Hole as an example container to run in this environment. But what exactly is Pi-Hole? As the creators state on the website, it’s a Network-wide Ad Blocker: it blocks ads and malware at the network level, resulting in web pages to be loaded except for those parts that contain ads. I don’t want to step into the fierce battle pro or versus online advertisements. This is just a tool you can (or don’t!) use on your local network, for which well done whitelists exist to still allow web pages to generate revenue. The procedure As the first thing, you’ll want to get the docker image: remember, this is still a low power computer and downloading (but most importantly extracting) will take a while: colibri-imx6-&amp;lt;yourid&amp;gt;:~$ docker pull pihole/pihole While the above command is running, open a new SSH shell to the Toradex computer: we’re going to create the appropriate network connections for this to work! First, let’s see what kind of connections are configured on this little box: colibri-imx6-&amp;lt;yourid&amp;gt;:~$ nmcli ... ethernet0: connected to network0 &quot;ethernet0&quot; ethernet (fec), 07:2B:B9:CA:22:0E, hw, mtu 1500 ip4 default inet4 192.168.1.184/24 route4 192.168.1.0/24 route4 0.0.0.0/0 inet6 fe80::8e56:116b:eb49:3cf9/64 route6 fe80::/64 route6 ff00::/8 Of course you’ll see more networks, those created by default by Docker. But the important one is this one: it represents the network created over the physical interface ethernet0. Since Pi-Hole requires its own address there are a couple of solutions: you let Docker create automatically a bridged network for this docker and just bind all the ports from the host network (the one bound to the physical network interface) down to Pi-Hole’s own little world you create a virtual network interface linked to the physical one and use it to create a new network, with its own IP address, just for Pi-Hole I went with the second option as, by default, Torizon has the port 53 already bound by one of its out-of-the-box services. Of course you could clean up the environment, free up that port and follow the first route: it’s up to you to decide! The first thing we’re going to do, is to assign a static IP address to the Toradex computer, just to make our life a little easier later on: colibri-imx6-&amp;lt;yourid&amp;gt;:~$ nmcli con edit network0 nmcli&amp;gt; set ipv4.addresses 192.168.1.254/24 Do you also want to set 'ipv4.method' to 'manual'? [yes]: yes nmcli&amp;gt; set ipv4.gateway 192.168.1.1 nmcli&amp;gt; save nmcli&amp;gt; quit At this point, you should have been disconnected due to the IP change. Reconnect, and let’s create the new virtual network interface: colibri-imx6-&amp;lt;yourid&amp;gt;:~$ nmcli con add type macvlan ifname macvlan0 autoconnect yes save yes dev ethernet0 mode bridge ip4 192.168.1.0/24 The above command tells NetworkManager to add a new connection of type macvlan, name it macvlan0, link it to the physical device ethernet0 in bridged mode. Also, we’re not specifying the IP address at this point. This is just the physical interface and we’re just specifying the subnetwork it’ll work on; the IP will be defined later on via docker-compose. Now let’s check our current situation with ifconfig: ethernet0 Link encap:Ethernet HWaddr 07:2b:b9:ca:22:0e inet addr:192.168.1.254 Bcast:192.168.1.255 Mask:255.255.255.0 inet6 addr: fe80::8e56:11f3:e4b3:b18a/64 Scope:Link UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1 RX packets:110971 errors:0 dropped:5 overruns:0 frame:0 TX packets:94561 errors:0 dropped:0 overruns:0 carrier:0 collisions:0 txqueuelen:1000 RX bytes:21211721 (20.2 MiB) TX bytes:22388391 (21.3 MiB) macvlan0 Link encap:Ethernet HWaddr ba:26:49:e8:fa:97 inet addr:192.168.1.0 Bcast:192.168.1.255 Mask:255.255.255.0 inet6 addr: fe80::49aa:ae92:8fa3:74ba/64 Scope:Link UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1 RX packets:28506 errors:0 dropped:0 overruns:0 frame:0 TX packets:5562 errors:0 dropped:0 overruns:0 carrier:0 collisions:0 txqueuelen:1000 RX bytes:3918713 (3.7 MiB) TX bytes:477197 (466.0 KiB) All right, everything checks out. At this point, we only have to launch the Pi-Hole container, instructing docker to create an appropriate network which uses the newly created virtual interface. To do so, we’re going to use docker-compose. Create a folder on your home directory, such as mkdir compose/pihole and then create a blank docker-compose.yml file in it. Open it with your favorite text editing software and paste the pre-configured yml found in the Pi-Hole’s docker hub, then add the following: version: &quot;2&quot; networks: piholenet: driver: macvlan driver_opts: parent: macvlan0 ipam: config: - subnet: 192.168.1.0/24 gateway: 192.168.1.1 services: pihole: ... networks: piholenet: ipv4_address: 192.168.1.2 ... The above will instruct Docker to create a network for our container, using the physical (actually virtual) interface macvlan0. Everything should be set-up and ready to go. Let’s try: colibri-imx6-&amp;lt;yourid&amp;gt;:~$ docker-compose up -d Conclusions As with a lot of projects like this one, many things can differ from one’s configuration to the other. This article’s goal was not to provide a step-by-step guide to have something so personal as a DHCP and DNS server custom-tailored for your network. Instead, I wanted to document the main steps I had to take to end up having a working docker container, with its own bridged virtual network interface, running on a funny little Arm computer. I hope you’ve enjoyed something a little different from the usual C++ stuff. Take care.</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">Lifetime managers</title>
