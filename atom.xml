@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Our first game using UE4 and C++</title>
+        
+          <description>&lt;p&gt;Talk held online on the 28th of November 2020 for the &lt;a href=&quot;https://www.italiancpp.org/event/cppday20/&quot;&gt;C++ Day 2020&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 28 Nov 2020 10:30:00 +0100</pubDate>
+        <link>
+        /2020/11/28/first-game-in-ue4/</link>
+        <guid isPermaLink="true">/2020/11/28/first-game-in-ue4/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Of docker containers and Arm mini-computers</title>
         
           <description>&lt;p&gt;This article will be on a very different topic than the ones I’ve been talking about usually in this blog.&lt;/p&gt;

@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/tag/ue4/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2020-09-11T19:11:39+02:00</updated>
+  <updated>2020-11-29T13:05:22+01:00</updated>
   <id>/tag/ue4/feed.xml</id>
 
   
@@ -30,6 +30,57 @@
   
   
 
+  
+    <entry>
+      <title type="html">Our first game using UE4 and C++</title>
+      <link href="/2020/11/28/first-game-in-ue4/" rel="alternate" type="text/html" title="Our first game using UE4 and C++" />
+      <published>2020-11-28T10:30:00+01:00</published>
+      <updated>2020-11-28T10:30:00+01:00</updated>
+      <id>/2020/11/28/first-game-in-ue4</id>
+      <content type="html" xml:base="/2020/11/28/first-game-in-ue4/">&lt;p&gt;Talk held online on the 28th of November 2020 for the &lt;a href=&quot;https://www.italiancpp.org/event/cppday20/&quot;&gt;C++ Day 2020&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately this was my first ever live coding event and I totally messed up the timing. I was able to just go through the basics and couldn’t even show you the pawn moving, sorry!&lt;/p&gt;
+
+&lt;p&gt;This talk is about creating in C++ a Pawn in a vertical scrolling shooter game made with UE4: starting from scratch, I created the base class, then added input binding, some properties and the movement logic. I then created a Blueprint based on this rough implementation so that I could start defining the properties’ values, such as health, soundFXs, projectiles, etc…&lt;/p&gt;
+
+&lt;p&gt;Please, have a look at the source code which contains the full implementation, along with the compiled binaries for you to try!&lt;/p&gt;
+
+&lt;h3 id=&quot;resources&quot;&gt;Resources&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Repository: &lt;a href=&quot;https://github.com/mmischitelli/MeetupNov2020&quot;&gt;Example code on GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Slides: Our first game using UE4 and C++ &lt;a href=&quot;/assets/downloads/talks-nov2020.pdf&quot;&gt;[.pdf (1.6MB)]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Video: Live event recording &lt;a href=&quot;https://youtu.be/ap6TJtFNJbM&quot;&gt;YouTube (ENG)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Michele Mischitelli</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="ue4" />
+      
+        <category term="cpp" />
+      
+        <category term="talks" />
+      
+
+      
+        <summary type="html">Talk held online on the 28th of November 2020 for the C++ Day 2020.</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">UE4 - delegates, async and subsystems</title>
@@ -90,7 +141,7 @@
       <id>/2019/10/10/introduction-to-ue4</id>
       <content type="html" xml:base="/2019/10/10/introduction-to-ue4/">&lt;p&gt;Talk held on the 10th of October 2019 at MakeIt Modena for the &lt;a href=&quot;https://www.italiancpp.org/&quot;&gt;Italian C++ Community&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Begin an introduction, I took the chance to shed some light on game engines in general, describing their overall architecture and how some mandatory requirements made them evolve in complex frameworks.&lt;/p&gt;
+&lt;p&gt;Beign an introduction, I took the chance to shed some light on game engines in general, describing their overall architecture and how some mandatory requirements made them evolve in complex frameworks.&lt;/p&gt;
 
 &lt;p&gt;At this point, I could start diving into Unreal Engine 4, highlighting some key benefits and interesting aspects of this engine, especially if you are a C++ developer. As with every decent introduction in the world of programming, I could not avoid showing an &lt;code class=&quot;highlighter-rouge&quot;&gt;Hello, World&lt;/code&gt; project. We then moved on making this example a little bit more &lt;em&gt;Unreal-esque&lt;/em&gt;, turning the text into a dynamic string that can be edited in various ways.&lt;/p&gt;
 
