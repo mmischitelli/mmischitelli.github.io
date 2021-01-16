@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Calibrating an RGB keyboard</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="A blog about myself" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/2021/01/13/calibrating-rgb-keyboard/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Michele Mischitelli's blog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calibrating an RGB keyboard" />
+    <meta property="og:description" content="Ok, this might seem simply too much. And it is. But it’s been fun and colorful… so, why not trying it yourself?! A little backstory: I was looking for a new keyboard. I’ve been using mechanical keyboards for more than 8 years and during this time I could experience many" />
+    <meta property="og:url" content="/2021/01/13/calibrating-rgb-keyboard/" />
+    <meta property="og:image" content="/assets/images/posts/rgb-keyboard-header.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2021-01-13T11:00:00+01:00" />
+    <meta property="article:modified_time" content="2021-01-13T11:00:00+01:00" />
+    <meta property="article:tag" content="Diy" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Calibrating an RGB keyboard" />
+    <meta name="twitter:description" content="Ok, this might seem simply too much. And it is. But it’s been fun and colorful… so, why not trying it yourself?! A little backstory: I was looking for a new keyboard. I’ve been using mechanical keyboards for more than 8 years and during this time I could experience many" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/posts/rgb-keyboard-header.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Michele Mischitelli's blog" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Diy" />
+    <meta name="twitter:site" content="@michelemischit1" />
+    <meta name="twitter:creator" content="@michelemischit1" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Michele Mischitelli's blog",
+        "logo": "/assets/images/blog-logo.png"
+    },
+    "url": "/2021/01/13/calibrating-rgb-keyboard/",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/posts/rgb-keyboard-header.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/2021/01/13/calibrating-rgb-keyboard/"
+    },
+    "description": "Ok, this might seem simply too much. And it is. But it’s been fun and colorful… so, why not trying it yourself?! A little backstory: I was looking for a new keyboard. I’ve been using mechanical keyboards for more than 8 years and during this time I could experience many"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Calibrating an RGB keyboard" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/"><img src="/assets/images/blog-logo.png" alt="Michele Mischitelli's blog" /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-portfolio" role="menuitem"><a href="/portfolio/">Portfolio</a></li>
+    <li class="nav-talks" role="menuitem"><a href="/talks/">Talks</a></li>
+    <li class="nav-thesis" role="menuitem"><a href="/thesis/">Thesis</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/michelemischit1" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="13 January 2021">13 January 2021</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/diy/'>DIY</a>,
+                            
+                        
+                            
+                               <a href='/tag/keyboards/'>KEYBOARDS</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Calibrating an RGB keyboard</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/images/posts/rgb-keyboard-header.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>Ok, this might seem simply too much. And it is. But it’s been fun and colorful… so, why not trying it yourself?!</p>
+
+<p>A little backstory: I was looking for a new keyboard. I’ve been using mechanical keyboards for more than 8 years and during this time I could experience many different types of switches, keycaps, layouts. But the more I learned and experienced, the more unsure I felt about what switches my next keyboard would have.</p>
+
+<p>One day I end up on the GMMK website and got pretty interested in their <a href="https://www.pcgamingrace.com/products/gmmk-tkl-tenkeyless-brown-switch">tenkeyless keyboard</a>: an hotswappable, RGB backlit, alluminum keyboard for less than 80€? Ok, you still have to factor in the switches and the keycaps which easily can make up for 2/3 of the price of a keyboard. But if you, like me, already have those laying around somewhere in your house…</p>
+
+<h2 id="the-switches">The switches</h2>
+
+<p>So I ordered the keyboard and it arrived in just a couple of days. Beautiful and sturdy, I decided to install the only switches I had already unsoldered and cleaned up: MX Blacks. As for the keycaps, I used the ones I had on my previous keyboard, a TKL Varmilo VA88M. Oh boi, the sound of solid, high quality PBT keycaps on a linear switch mounted on a dampened, alluminum keyboard… so neat!</p>
+
+<p>But because of those switches I was losing completely the RGB backlight: not a single ray of RGB eye-catchery was peeking through the pitch blackness of them MXes! Not only that: as smooth and silky the typing experience was, I always preferred slightly lighter, tactile switches, such as MX Browns.</p>
+
+<p><img src="/assets/images/posts/switch-tester.jpg" alt="switch-tester" title="72 switches tester" height="350px" /></p>
+
+<p>A <a href="https://ubik.dev/">friend of mine</a> had a switch tester laying around the office, so I borrowed his and played with it: the first thing that I understood was that, regardless of the switch I ended up choosing, it had to be <em>silenced</em>. In the end I went for the Zilent v2 76g tactile switches: they’re very tactile, they’re silent, transparent… and <strong>VERY</strong> expensive. I ordered them directly from the <a href="https://zealpc.net/products/zilent">maker’s website</a> and after just three days they arrived from Canada!</p>
+
+<p><img src="/assets/images/posts/zilent-switches.jpg" alt="zilent-switches" title="Zilent v2 76g switches" height="350px" /></p>
+
+<h2 id="the-rgb-issue">The RGB issue</h2>
+
+<p>I don’t want (yet?!) to turn this into a mechanical keyboard blog so I’ll spare you the details of how smooth and bumpy and lovely these switches are. No. Instead, I want to share with you a little annoyance I got once I fully assembled the keyboard and could finally play with the RGB lightning. Basically, the colors are way off. Ok, I know, it’s not a display so who cares. But when I say <em>they’re off</em>, I do really mean it. Like, blue that’s more like teal, purple that’s pink, orange that’s just a warm white..</p>
+
+<p><img src="/assets/images/posts/rgb-before-after.jpg" alt="before-after-calibration" title="Before / after calibration" height="350px" /></p>
+
+<p>In the image above you can see what I mean. Let’s say you want to display the color <span style="color:#FF8040">██</span><code class="highlighter-rouge">#FF8040</code>. Normally you’d convert from HEX to RGB, obtaining <code class="highlighter-rouge">{255, 128, 64}</code>, then type these values in the keyboard’s management software and… you’d get the first (top-left) color in the above picture! But that’s pink-ish white, not salmon-orange!</p>
+
+<h2 id="the-calibration">The calibration</h2>
+
+<p>This is a well known issue you’d normally find in computer monitors, TVs, cameras, printers. Any device that either <em>shows</em> or <em>captures</em> colors is affected by it and the discrepancy between <em>expected</em> and actual colors is usually solved through <em>calibration</em>.</p>
+
+<p>Calibration is the process of adjusting the color response of a device to some reference value. In my case, the calibration source will be the keyboard’s RGB LEDs and the calibration target will be my color-calibrated monitor. Yes, this will be a totally biased and subjective calibration, performed using my own eyes and personal judgment.</p>
+
+<h3 id="step-1---generating-input-data">Step 1 - Generating input data</h3>
+<p>We first need to generate a 3D color matrix, where each dimension represents a color component (<span style="color:#FF0000">R</span>, <span style="color:#00FF00">G</span>, <span style="color:#0000FF">B</span>). How many samples each dimension will have it’s up to you, but I strongly advise sticking to very small numbers, such as 4 or 5. In my case, I went with 5 samples per channel for a total of 5<sup>3</sup> = 125 unique colors.</p>
+
+<p>Of course, having more colors in this matrix will definitely increase the accuracy of the calibration. But we’re using our own eyes instead of a colorimeter: it will be impossible for you to tell the difference between <span style="color:#FF8040">██</span><code class="highlighter-rouge">#FF8040</code> and <span style="color:#FF8030">██</span><code class="highlighter-rouge">#FF8030</code>; not to mention the time it will take to manually type each color in the keyboard’s software 😉.</p>
+
+<p>For this project I’m going to use Powershell. So, to start, we’d need something like this:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$lut</span><span class="o">[</span>  0,  0,  0]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+<span class="nv">$lut</span><span class="o">[</span>  0,  0, 63]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+<span class="nv">$lut</span><span class="o">[</span>  0,  0,127]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+<span class="nv">$lut</span><span class="o">[</span>  0,  0,191]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+<span class="nv">$lut</span><span class="o">[</span>  0,  0,255]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+<span class="nv">$lut</span><span class="o">[</span>  0, 63,  0]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+<span class="nv">$lut</span><span class="o">[</span>  0, 63, 63]<span class="o">=</span>@<span class="o">(</span>0,0,0<span class="o">)</span>
+...
+</code></pre></div></div>
+
+<h3 id="step-2---generating-calibrated-values">Step 2 - Generating calibrated values</h3>
+<p>This is the colorful part. The steps are very repetitive and boring:</p>
+<ul>
+  <li>open paint</li>
+  <li>make a custom color that matches the n-th input sample in the above matrix</li>
+  <li>paint a big blob of color in the document</li>
+  <li>open the keyboard software</li>
+  <li>pick the same color and set it to some key</li>
+  <li>the goal is to have it match the color on the screen: if it doesn’t, try fiddling a bit with the RGB channels until it does</li>
+</ul>
+
+<p>A couple of tips that might save you some time:</p>
+<ul>
+  <li>calibrate the white color before everything else: in my case, 255 to all channels produced a green-ish tint! Keep in mind this information for later, it will give you an important suggestion about what channel is the predominant one in your RGB LEDs</li>
+  <li>calibrate one channel at a time</li>
+  <li>for each channel start with the brightest color (255), then with the one above zero (63) and finally the rest</li>
+  <li>it’s the best to perform the procedure in a dark room, with all the lights turned off</li>
+  <li>turn off all the other LEDs on the keyboard as well</li>
+</ul>
+
+<p>If you have some translucent, white plastic (such as teflon), put it above the RGB light you’re using for calibration. The idea is that since the RGB LED is made up of three very small LEDs, one for each channel, you need a translucent material between it and you. The output of each LED will then go inside the material, get scattered inside it, blend with the other colors and then finally exit, resulting in a much smoother, better representation of the actual color.</p>
+
+<p>It’s also worth mentioning that you’ll probably find particularly challenging calibrating low brightness values. This is perfectly normal and stems from the fact that light intensity scales logarithmically, not linearly.</p>
+
+<p>Finally, keep in mind that you’re comparing a pure color originating from a colored LED to the one produced by your monitor, which most probably is generated by a white LED backlight passing through an LCD matrix. Don’t worry, then, if you end up matching some color with much smaller intensities in the LEDs, or if a “pure green” in the target requires some small quantities of either red or blue.</p>
+
+<h3 id="step-3---lets-write-some-code">Step 3 - Let’s write some code!</h3>
+<p>Once you’ve mapped all target colors to the best possible values to your LEDs, it’s time to write the script that will convert any target color to the calibrated value on your keyboard.</p>
+
+<p>First, we need to convert input colors from HEX to RGB:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$inputColor</span> <span class="o">=</span> <span class="nv">$inputColor</span>.Replace<span class="o">(</span><span class="s1">'#'</span>,<span class="s1">''</span><span class="o">)</span>
+<span class="nv">$r</span> <span class="o">=</span> <span class="o">[</span>int64][System.Convert]::ToInt64<span class="o">(</span><span class="nv">$inputColor</span>.Substring<span class="o">(</span>0, 2<span class="o">)</span>, 16<span class="o">)</span>
+<span class="nv">$g</span> <span class="o">=</span> <span class="o">[</span>int64][System.Convert]::ToInt64<span class="o">(</span><span class="nv">$inputColor</span>.Substring<span class="o">(</span>2, 2<span class="o">)</span>, 16<span class="o">)</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="o">[</span>int64][System.Convert]::ToInt64<span class="o">(</span><span class="nv">$inputColor</span>.Substring<span class="o">(</span>4, 2<span class="o">)</span>, 16<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Then we need to obtain the sub-matrix in which the input color falls into:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>Get-InterpBounds<span class="o">([</span>Parameter<span class="o">(</span>Mandatory<span class="o">)][</span>Int64]<span class="nv">$x</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="nv">$div</span> <span class="o">=</span> <span class="o">[</span><span class="kt">double</span><span class="o">]</span><span class="nv">$x</span> / 64.0
+    <span class="nv">$intPart</span> <span class="o">=</span> <span class="o">[</span>math]::floor<span class="o">(</span><span class="nv">$div</span><span class="o">)</span>
+
+    <span class="o">[</span><span class="kt">double</span><span class="o">]</span><span class="nv">$lowerBound</span> <span class="o">=</span> <span class="o">[</span>math]::Max<span class="o">(</span>0, <span class="o">(</span><span class="nv">$intPart</span> <span class="k">*</span> 64<span class="o">)</span>-1<span class="o">)</span>
+    <span class="o">[</span><span class="kt">double</span><span class="o">]</span><span class="nv">$upperBound</span> <span class="o">=</span> <span class="o">(</span><span class="nv">$lowerBound</span> -gt 0<span class="o">)</span> ? <span class="o">(</span><span class="nv">$lowerBound</span> + 64<span class="o">)</span> : <span class="o">(</span><span class="nv">$lowerBound</span> + 63<span class="o">)</span>
+    <span class="o">[</span><span class="kt">double</span><span class="o">]</span><span class="nv">$offset</span> <span class="o">=</span> <span class="o">[</span><span class="kt">double</span><span class="o">](</span><span class="nv">$x</span>-<span class="nv">$lowerBound</span><span class="o">)</span>/[double]<span class="o">(</span><span class="nv">$upperBound</span>-<span class="nv">$lowerBound</span><span class="o">)</span>
+    
+    <span class="k">return</span> @<span class="o">(</span><span class="nv">$lowerBound</span>, <span class="nv">$upperBound</span>, <span class="nv">$offset</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/rgb-trilinear-interp.jpg" alt="trilinear-interpolation" title="Trilinear interpolation" height="350px" /></p>
+
+<p>The above takes into consideration the fact that each dimension in my source matrix has been sampled at (0, 63, 127, 191, 255). Once we are able to determine the bounds for each channel, we perform <a href="https://en.wikipedia.org/wiki/Trilinear_interpolation">trilinear interpolation</a> to get the color-corrected value:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>Get-Interp3D<span class="o">(</span><span class="nv">$r</span>, <span class="nv">$g</span>, <span class="nv">$b</span>, <span class="nv">$lut</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="nv">$pR</span> <span class="o">=</span> Get-InterpBounds <span class="nv">$r</span>
+    <span class="nv">$pG</span> <span class="o">=</span> Get-InterpBounds <span class="nv">$g</span>
+    <span class="nv">$pB</span> <span class="o">=</span> Get-InterpBounds <span class="nv">$b</span>
+
+    <span class="nv">$c000</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>0]][[int]<span class="nv">$pG</span><span class="o">[</span>0]][[int]<span class="nv">$pB</span><span class="o">[</span>0]]
+    <span class="nv">$c001</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>0]][[int]<span class="nv">$pG</span><span class="o">[</span>0]][[int]<span class="nv">$pB</span><span class="o">[</span>1]]
+    <span class="nv">$c010</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>0]][[int]<span class="nv">$pG</span><span class="o">[</span>1]][[int]<span class="nv">$pB</span><span class="o">[</span>0]]
+    <span class="nv">$c011</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>0]][[int]<span class="nv">$pG</span><span class="o">[</span>1]][[int]<span class="nv">$pB</span><span class="o">[</span>1]]
+    <span class="nv">$c100</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>1]][[int]<span class="nv">$pG</span><span class="o">[</span>0]][[int]<span class="nv">$pB</span><span class="o">[</span>0]]
+    <span class="nv">$c101</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>1]][[int]<span class="nv">$pG</span><span class="o">[</span>0]][[int]<span class="nv">$pB</span><span class="o">[</span>1]]
+    <span class="nv">$c110</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>1]][[int]<span class="nv">$pG</span><span class="o">[</span>1]][[int]<span class="nv">$pB</span><span class="o">[</span>0]]
+    <span class="nv">$c111</span> <span class="o">=</span> <span class="nv">$lut</span><span class="o">[[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$pR</span><span class="o">[</span>1]][[int]<span class="nv">$pG</span><span class="o">[</span>1]][[int]<span class="nv">$pB</span><span class="o">[</span>1]]
+
+    <span class="nv">$c00</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c000</span> <span class="nv">$c100</span> <span class="nv">$pR</span><span class="o">[</span>2]
+    <span class="nv">$c01</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c001</span> <span class="nv">$c101</span> <span class="nv">$pR</span><span class="o">[</span>2]
+    <span class="nv">$c10</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c010</span> <span class="nv">$c110</span> <span class="nv">$pR</span><span class="o">[</span>2]
+    <span class="nv">$c11</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c011</span> <span class="nv">$c111</span> <span class="nv">$pR</span><span class="o">[</span>2]
+
+    <span class="nv">$c0</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c00</span> <span class="nv">$c10</span> <span class="nv">$pG</span><span class="o">[</span>2]
+    <span class="nv">$c1</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c01</span> <span class="nv">$c11</span> <span class="nv">$pG</span><span class="o">[</span>2]
+
+    <span class="nv">$c</span> <span class="o">=</span> Get-Lerp3D <span class="nv">$c0</span> <span class="nv">$c1</span> <span class="nv">$pB</span><span class="o">[</span>2]
+
+    <span class="k">return</span> <span class="o">[</span>math]::Round<span class="o">(</span><span class="nv">$c</span><span class="o">[</span>0]<span class="o">)</span>, <span class="o">[</span>math]::Round<span class="o">(</span><span class="nv">$c</span><span class="o">[</span>1]<span class="o">)</span>, <span class="o">[</span>math]::Round<span class="o">(</span><span class="nv">$c</span><span class="o">[</span>2]<span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">Get-Lerp3D</code> function is just a simple linear interpolation.</p>
+
+<h2 id="wrapping-it-up">Wrapping it up</h2>
+
+<p>Once everything’s been done, we can simply invoke the script in the shell like this:
+<img src="/assets/images/posts/rgb-final-result.jpg" alt="final-results" title="Obtaining color-corrected values in powershell" />
+It’s cool! At this point you should have an understanding of how color correction works. Of course, applying it to a keyboard it’s blatantly overkill and useless. But who knows, maybe you can try and calibrate your christmas lights for the next year! 🤣</p>
+
+<p>Cheers!</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/mmischitelli.png" alt="mmischitelli" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/mmischitelli">Michele Mischitelli</a></h4>
+                                
+                                    <p>C++ & Unreal Engine 4 developer</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/mmischitelli">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/2020/11/28/first-game-in-ue4/">
+                <div class="post-card-image" style="background-image: url(/assets/images/posts/talks-header-nov2020.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/2020/11/28/first-game-in-ue4/">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Ue4, </span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Cpp, </span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Talks</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Our first game using UE4 and C++</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/mmischitelli.png" alt="Michele Mischitelli" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/mmischitelli/">Michele Mischitelli</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="Michele Mischitelli's blog icon" />
+            
+            <span>Michele Mischitelli's blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Calibrating an RGB keyboard</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Calibrating+an+RGB+keyboard&amp;url=https://mmischitelli.github.io2021/01/13/calibrating-rgb-keyboard/"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://mmischitelli.github.io2021/01/13/calibrating-rgb-keyboard/"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">Michele Mischitelli's blog</a> &copy; 2021</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    
+                    <a href="https://twitter.com/michelemischit1" target="_blank" rel="noopener">Twitter</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51694480-3', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

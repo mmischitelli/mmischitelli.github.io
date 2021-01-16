@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/author/mmischitelli/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2020-11-29T13:05:22+01:00</updated>
+  <updated>2021-01-16T19:25:57+01:00</updated>
   <id>/author/mmischitelli/feed.xml</id>
 
   
@@ -30,6 +30,183 @@
   
   
 
+  
+    <entry>
+      <title type="html">Calibrating an RGB keyboard</title>
+      <link href="/2021/01/13/calibrating-rgb-keyboard/" rel="alternate" type="text/html" title="Calibrating an RGB keyboard" />
+      <published>2021-01-13T11:00:00+01:00</published>
+      <updated>2021-01-13T11:00:00+01:00</updated>
+      <id>/2021/01/13/calibrating-rgb-keyboard</id>
+      <content type="html" xml:base="/2021/01/13/calibrating-rgb-keyboard/">&lt;p&gt;Ok, this might seem simply too much. And it is. But it’s been fun and colorful… so, why not trying it yourself?!&lt;/p&gt;
+
+&lt;p&gt;A little backstory: I was looking for a new keyboard. I’ve been using mechanical keyboards for more than 8 years and during this time I could experience many different types of switches, keycaps, layouts. But the more I learned and experienced, the more unsure I felt about what switches my next keyboard would have.&lt;/p&gt;
+
+&lt;p&gt;One day I end up on the GMMK website and got pretty interested in their &lt;a href=&quot;https://www.pcgamingrace.com/products/gmmk-tkl-tenkeyless-brown-switch&quot;&gt;tenkeyless keyboard&lt;/a&gt;: an hotswappable, RGB backlit, alluminum keyboard for less than 80€? Ok, you still have to factor in the switches and the keycaps which easily can make up for 2/3 of the price of a keyboard. But if you, like me, already have those laying around somewhere in your house…&lt;/p&gt;
+
+&lt;h2 id=&quot;the-switches&quot;&gt;The switches&lt;/h2&gt;
+
+&lt;p&gt;So I ordered the keyboard and it arrived in just a couple of days. Beautiful and sturdy, I decided to install the only switches I had already unsoldered and cleaned up: MX Blacks. As for the keycaps, I used the ones I had on my previous keyboard, a TKL Varmilo VA88M. Oh boi, the sound of solid, high quality PBT keycaps on a linear switch mounted on a dampened, alluminum keyboard… so neat!&lt;/p&gt;
+
+&lt;p&gt;But because of those switches I was losing completely the RGB backlight: not a single ray of RGB eye-catchery was peeking through the pitch blackness of them MXes! Not only that: as smooth and silky the typing experience was, I always preferred slightly lighter, tactile switches, such as MX Browns.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/switch-tester.jpg&quot; alt=&quot;switch-tester&quot; title=&quot;72 switches tester&quot; height=&quot;350px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&quot;https://ubik.dev/&quot;&gt;friend of mine&lt;/a&gt; had a switch tester laying around the office, so I borrowed his and played with it: the first thing that I understood was that, regardless of the switch I ended up choosing, it had to be &lt;em&gt;silenced&lt;/em&gt;. In the end I went for the Zilent v2 76g tactile switches: they’re very tactile, they’re silent, transparent… and &lt;strong&gt;VERY&lt;/strong&gt; expensive. I ordered them directly from the &lt;a href=&quot;https://zealpc.net/products/zilent&quot;&gt;maker’s website&lt;/a&gt; and after just three days they arrived from Canada!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/zilent-switches.jpg&quot; alt=&quot;zilent-switches&quot; title=&quot;Zilent v2 76g switches&quot; height=&quot;350px&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-rgb-issue&quot;&gt;The RGB issue&lt;/h2&gt;
+
+&lt;p&gt;I don’t want (yet?!) to turn this into a mechanical keyboard blog so I’ll spare you the details of how smooth and bumpy and lovely these switches are. No. Instead, I want to share with you a little annoyance I got once I fully assembled the keyboard and could finally play with the RGB lightning. Basically, the colors are way off. Ok, I know, it’s not a display so who cares. But when I say &lt;em&gt;they’re off&lt;/em&gt;, I do really mean it. Like, blue that’s more like teal, purple that’s pink, orange that’s just a warm white..&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/rgb-before-after.jpg&quot; alt=&quot;before-after-calibration&quot; title=&quot;Before / after calibration&quot; height=&quot;350px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the image above you can see what I mean. Let’s say you want to display the color &lt;span style=&quot;color:#FF8040&quot;&gt;██&lt;/span&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#FF8040&lt;/code&gt;. Normally you’d convert from HEX to RGB, obtaining &lt;code class=&quot;highlighter-rouge&quot;&gt;{255, 128, 64}&lt;/code&gt;, then type these values in the keyboard’s management software and… you’d get the first (top-left) color in the above picture! But that’s pink-ish white, not salmon-orange!&lt;/p&gt;
+
+&lt;h2 id=&quot;the-calibration&quot;&gt;The calibration&lt;/h2&gt;
+
+&lt;p&gt;This is a well known issue you’d normally find in computer monitors, TVs, cameras, printers. Any device that either &lt;em&gt;shows&lt;/em&gt; or &lt;em&gt;captures&lt;/em&gt; colors is affected by it and the discrepancy between &lt;em&gt;expected&lt;/em&gt; and actual colors is usually solved through &lt;em&gt;calibration&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Calibration is the process of adjusting the color response of a device to some reference value. In my case, the calibration source will be the keyboard’s RGB LEDs and the calibration target will be my color-calibrated monitor. Yes, this will be a totally biased and subjective calibration, performed using my own eyes and personal judgment.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1---generating-input-data&quot;&gt;Step 1 - Generating input data&lt;/h3&gt;
+&lt;p&gt;We first need to generate a 3D color matrix, where each dimension represents a color component (&lt;span style=&quot;color:#FF0000&quot;&gt;R&lt;/span&gt;, &lt;span style=&quot;color:#00FF00&quot;&gt;G&lt;/span&gt;, &lt;span style=&quot;color:#0000FF&quot;&gt;B&lt;/span&gt;). How many samples each dimension will have it’s up to you, but I strongly advise sticking to very small numbers, such as 4 or 5. In my case, I went with 5 samples per channel for a total of 5&lt;sup&gt;3&lt;/sup&gt; = 125 unique colors.&lt;/p&gt;
+
+&lt;p&gt;Of course, having more colors in this matrix will definitely increase the accuracy of the calibration. But we’re using our own eyes instead of a colorimeter: it will be impossible for you to tell the difference between &lt;span style=&quot;color:#FF8040&quot;&gt;██&lt;/span&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#FF8040&lt;/code&gt; and &lt;span style=&quot;color:#FF8030&quot;&gt;██&lt;/span&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#FF8030&lt;/code&gt;; not to mention the time it will take to manually type each color in the keyboard’s software 😉.&lt;/p&gt;
+
+&lt;p&gt;For this project I’m going to use Powershell. So, to start, we’d need something like this:&lt;/p&gt;
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0,  0,  0]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0,  0, 63]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0,  0,127]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0,  0,191]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0,  0,255]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0, 63,  0]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  0, 63, 63]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;@&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0,0,0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;step-2---generating-calibrated-values&quot;&gt;Step 2 - Generating calibrated values&lt;/h3&gt;
+&lt;p&gt;This is the colorful part. The steps are very repetitive and boring:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;open paint&lt;/li&gt;
+  &lt;li&gt;make a custom color that matches the n-th input sample in the above matrix&lt;/li&gt;
+  &lt;li&gt;paint a big blob of color in the document&lt;/li&gt;
+  &lt;li&gt;open the keyboard software&lt;/li&gt;
+  &lt;li&gt;pick the same color and set it to some key&lt;/li&gt;
+  &lt;li&gt;the goal is to have it match the color on the screen: if it doesn’t, try fiddling a bit with the RGB channels until it does&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A couple of tips that might save you some time:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;calibrate the white color before everything else: in my case, 255 to all channels produced a green-ish tint! Keep in mind this information for later, it will give you an important suggestion about what channel is the predominant one in your RGB LEDs&lt;/li&gt;
+  &lt;li&gt;calibrate one channel at a time&lt;/li&gt;
+  &lt;li&gt;for each channel start with the brightest color (255), then with the one above zero (63) and finally the rest&lt;/li&gt;
+  &lt;li&gt;it’s the best to perform the procedure in a dark room, with all the lights turned off&lt;/li&gt;
+  &lt;li&gt;turn off all the other LEDs on the keyboard as well&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you have some translucent, white plastic (such as teflon), put it above the RGB light you’re using for calibration. The idea is that since the RGB LED is made up of three very small LEDs, one for each channel, you need a translucent material between it and you. The output of each LED will then go inside the material, get scattered inside it, blend with the other colors and then finally exit, resulting in a much smoother, better representation of the actual color.&lt;/p&gt;
+
+&lt;p&gt;It’s also worth mentioning that you’ll probably find particularly challenging calibrating low brightness values. This is perfectly normal and stems from the fact that light intensity scales logarithmically, not linearly.&lt;/p&gt;
+
+&lt;p&gt;Finally, keep in mind that you’re comparing a pure color originating from a colored LED to the one produced by your monitor, which most probably is generated by a white LED backlight passing through an LCD matrix. Don’t worry, then, if you end up matching some color with much smaller intensities in the LEDs, or if a “pure green” in the target requires some small quantities of either red or blue.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3---lets-write-some-code&quot;&gt;Step 3 - Let’s write some code!&lt;/h3&gt;
+&lt;p&gt;Once you’ve mapped all target colors to the best possible values to your LEDs, it’s time to write the script that will convert any target color to the calibrated value on your keyboard.&lt;/p&gt;
+
+&lt;p&gt;First, we need to convert input colors from HEX to RGB:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$inputColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$inputColor&lt;/span&gt;.Replace&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'#'&lt;/span&gt;,&lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;int64][System.Convert]::ToInt64&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$inputColor&lt;/span&gt;.Substring&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0, 2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;int64][System.Convert]::ToInt64&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$inputColor&lt;/span&gt;.Substring&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2, 2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;int64][System.Convert]::ToInt64&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$inputColor&lt;/span&gt;.Substring&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;4, 2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we need to obtain the sub-matrix in which the input color falls into:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Get-InterpBounds&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;Parameter&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Mandatory&lt;span class=&quot;o&quot;&gt;)][&lt;/span&gt;Int64]&lt;span class=&quot;nv&quot;&gt;$x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$div&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$x&lt;/span&gt; / 64.0
+    &lt;span class=&quot;nv&quot;&gt;$intPart&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;math]::floor&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;math]::Max&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$intPart&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 64&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;-1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$upperBound&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt; -gt 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ? &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt; + 64&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; : &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt; + 63&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$x&lt;/span&gt;-&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/[double]&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$upperBound&lt;/span&gt;-&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$lowerBound&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$upperBound&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/rgb-trilinear-interp.jpg&quot; alt=&quot;trilinear-interpolation&quot; title=&quot;Trilinear interpolation&quot; height=&quot;350px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The above takes into consideration the fact that each dimension in my source matrix has been sampled at (0, 63, 127, 191, 255). Once we are able to determine the bounds for each channel, we perform &lt;a href=&quot;https://en.wikipedia.org/wiki/Trilinear_interpolation&quot;&gt;trilinear interpolation&lt;/a&gt; to get the color-corrected value:&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Get-Interp3D&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$r&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$g&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-InterpBounds &lt;span class=&quot;nv&quot;&gt;$r&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-InterpBounds &lt;span class=&quot;nv&quot;&gt;$g&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-InterpBounds &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$c000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]]
+    &lt;span class=&quot;nv&quot;&gt;$c001&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]]
+    &lt;span class=&quot;nv&quot;&gt;$c010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]]
+    &lt;span class=&quot;nv&quot;&gt;$c011&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]]
+    &lt;span class=&quot;nv&quot;&gt;$c100&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]]
+    &lt;span class=&quot;nv&quot;&gt;$c101&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]]
+    &lt;span class=&quot;nv&quot;&gt;$c110&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]]
+    &lt;span class=&quot;nv&quot;&gt;$c111&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]][[int]&lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]]
+
+    &lt;span class=&quot;nv&quot;&gt;$c00&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c000&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c100&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+    &lt;span class=&quot;nv&quot;&gt;$c01&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c001&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c101&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+    &lt;span class=&quot;nv&quot;&gt;$c10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c010&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c110&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+    &lt;span class=&quot;nv&quot;&gt;$c11&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c011&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c111&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+
+    &lt;span class=&quot;nv&quot;&gt;$c0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c00&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c10&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+    &lt;span class=&quot;nv&quot;&gt;$c1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c01&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c11&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+
+    &lt;span class=&quot;nv&quot;&gt;$c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-Lerp3D &lt;span class=&quot;nv&quot;&gt;$c0&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$c1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;math]::Round&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;math]::Round&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;math]::Round&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Lerp3D&lt;/code&gt; function is just a simple linear interpolation.&lt;/p&gt;
+
+&lt;h2 id=&quot;wrapping-it-up&quot;&gt;Wrapping it up&lt;/h2&gt;
+
+&lt;p&gt;Once everything’s been done, we can simply invoke the script in the shell like this:
+&lt;img src=&quot;/assets/images/posts/rgb-final-result.jpg&quot; alt=&quot;final-results&quot; title=&quot;Obtaining color-corrected values in powershell&quot; /&gt;
+It’s cool! At this point you should have an understanding of how color correction works. Of course, applying it to a keyboard it’s blatantly overkill and useless. But who knows, maybe you can try and calibrate your christmas lights for the next year! 🤣&lt;/p&gt;
+
+&lt;p&gt;Cheers!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Michele Mischitelli</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="diy" />
+      
+        <category term="keyboards" />
+      
+
+      
+        <summary type="html">Ok, this might seem simply too much. And it is. But it’s been fun and colorful… so, why not trying it yourself?!</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">Our first game using UE4 and C++</title>
